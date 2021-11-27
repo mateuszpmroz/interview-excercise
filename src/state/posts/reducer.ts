@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Post } from '@app/types';
 import { NAME } from './consts';
 import { getCommentsThunk, getPostsThunk } from './thunks';
+import { POSTS_LIMIT, START_INDEX } from '@app/consts';
 
 export interface PostsState {
     posts: Record<string, Post>;
@@ -17,7 +18,7 @@ const initialState = {
   posts: {},
   isLoading: false,
   error: '',
-  startIndex: 0,
+  startIndex: START_INDEX,
   isLastPostLoaded: false,
 } as PostsState;
 
@@ -40,7 +41,7 @@ export const postsSlice = createSlice({
         ...state.posts,
         ...payload,
       };
-      state.startIndex = state.startIndex + 5;
+      state.startIndex = state.startIndex + POSTS_LIMIT;
     });
     builder.addCase(getPostsThunk.rejected, (state, { error }) => {
       state.isLoading = false;
