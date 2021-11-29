@@ -1,5 +1,5 @@
 import React, { useEffect, FC } from 'react';
-import { PostsList } from '@app/components';
+import { PostList } from '@app/components';
 import { selectors as postsSelectors, thunks as postsThunks } from '@app/state/posts';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +36,7 @@ const PostListScreen: FC<Props> = ({ navigation }) => {
   
   return (
     <View style={styles.container}>
-      <PostsList data={postsArray} onEndReached={handleOnEndReached} onPostPress={onPostPress} />
+      <PostList data={postsArray} onEndReached={handleOnEndReached} onPostPress={onPostPress} />
       {isLoading && <ActivityIndicator animating size="large" color="primary" />}
     </View>
   );

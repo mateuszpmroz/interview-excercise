@@ -1,5 +1,5 @@
-import React, { useEffect, FC } from 'react';
-import { CommentsList } from '@app/components';
+import React, { useEffect, FC, useCallback } from 'react';
+import { CommentList } from '@app/components';
 import { selectors as postsSelectors, thunks as postsThunks, reducer as PostsReducer } from '@app/state/posts';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,7 +64,7 @@ const PostDetailsScreen: FC<Props> = ({ route: {
         <Text style={styles.title}>Comments</Text>
       </View>
       <View style={styles.commentsContainer}>
-        <CommentsList data={post.comments} />
+        <CommentList data={post.comments} />
         {isLoading && <ActivityIndicator animating size="large" color="primary" />}
       </View>
     </View>
