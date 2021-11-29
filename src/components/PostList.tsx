@@ -33,8 +33,6 @@ const PostList: FC<Props> = ({ data, onEndReached, onPostPress }) => {
 };
 
 export default React.memo(
-  PostList,
-  (nextProps, prevProps) =>
-    JSON.stringify(nextProps.data) === JSON.stringify(prevProps.data)
+  PostList
 );
 

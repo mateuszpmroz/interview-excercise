@@ -29,7 +29,5 @@ const CommentList : FC<Props> = ({ data }) => {
 };
 
 export default React.memo(
-  CommentList,
-  (nextProps, prevProps) =>
-    JSON.stringify(nextProps.data) === JSON.stringify(prevProps.data)
+  CommentList
 );
