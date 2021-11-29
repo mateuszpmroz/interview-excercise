@@ -10,17 +10,16 @@ interface Props {
 }
 
 const styles = StyleSheet.create({
-  postContaier: {
+  postContainer: {
     marginBottom: 20
   }
 });
 
-
 const PostList: FC<Props> = ({ data, onEndReached, onPostPress }) => {
   const renderItem = useCallback(({ item }) => <Card title={item.title} body={item.body} onPress={() => onPostPress(item.id)} />, []);
   const keyExtractor = useCallback((item) => item.id.toString(), []);
-  const itemSeparatorComponent = () => <View style={styles.postContaier} />;
-
+  const itemSeparatorComponent = () => <View style={styles.postContainer} />;
+  
   return (
     <FlatList
       data={data}
@@ -33,4 +32,9 @@ const PostList: FC<Props> = ({ data, onEndReached, onPostPress }) => {
   );
 };
 
-export default PostList;
+export default React.memo(
+  PostList,
+  (nextProps, prevProps) =>
+    JSON.stringify(nextProps.data) === JSON.stringify(prevProps.data)
+);
+

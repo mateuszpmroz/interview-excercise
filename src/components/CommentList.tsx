@@ -8,7 +8,7 @@ interface Props {
 }
 
 const styles = StyleSheet.create({
-  postContaier: {
+  commentContainer: {
     marginBottom: 20
   }
 });
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 const CommentList : FC<Props> = ({ data }) => {
   const renderItem = useCallback(({ item }) => <CommentComponent body={item.body} email={item.email} />, []);
   const keyExtractor = useCallback((item) => item.id.toString(), []);
-  const itemSeparatorComponent = () => <View style={styles.postContaier} />;
+  const itemSeparatorComponent = () => <View style={styles.commentContainer} />;
 
   return (
     <FlatList
@@ -28,5 +28,8 @@ const CommentList : FC<Props> = ({ data }) => {
   );
 };
 
-export default CommentList;
-
+export default React.memo(
+  CommentList,
+  (nextProps, prevProps) =>
+    JSON.stringify(nextProps.data) === JSON.stringify(prevProps.data)
+);

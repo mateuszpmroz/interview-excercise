@@ -1,4 +1,4 @@
-import React, { useEffect, FC, useCallback } from 'react';
+import React, { useEffect, FC } from 'react';
 import { CommentList } from '@app/components';
 import { selectors as postsSelectors, thunks as postsThunks, reducer as PostsReducer } from '@app/state/posts';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
